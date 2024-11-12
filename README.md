@@ -3,16 +3,16 @@
 This is a utility for sending email messages over the SMTP protocol. It is useful for DevOps engineers 
 in their work to test email in various environments. 
 You can enter and change the following parameters:
-	* Username
-	* Password
-	* Host
-	* Port
-	* Use SSL
-	* Usedefaultcredentials
-	* From
-	* To
-	* Subject
-	* Body
+* Username
+* Password
+* Host
+* Port
+* Use SSL
+* Usedefaultcredentials
+* From
+* To
+* Subject
+* Body
 Allows you to substitute the sending address, to do this, specify the desired address in the From field.
 
 # Implementation features.
