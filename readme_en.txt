@@ -1,0 +1,28 @@
+﻿---------------------------------------------------------------------------
+	The purpose of the project.
+
+This is a utility for sending an email message over the SMTP protocol. She is useful for DevOps engineers 
+in their work to test email in various environments. 
+You can enter and change the following parameters:
+	○ Username
+	○ Password
+	○ Host
+	○ Port
+	○ Use SSL
+	○ Usedefaultcredentials
+	○ From
+	○ To
+	○ Subject
+	○ Body
+Allows you to substitute the sending address, to do this, specify the desired address in the From field.
+
+
+	Implementation features.
+	
+○ The application is implemented using the MVVM design pattern.
+○ The application uses .NET Framework 4.7.2.
+
+
+	Publication.
+	
+This project is published on GitHub https://github.com/alekseiblinov/SimpleSmtpMailSender/.
