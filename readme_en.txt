@@ -1,7 +1,7 @@
 ﻿---------------------------------------------------------------------------
 	The purpose of the project.
 
-This is a utility for sending an email message over the SMTP protocol. She is useful for DevOps engineers 
+This is a utility for sending an email messages over the SMTP protocol. It is useful for DevOps engineers 
 in their work to test email in various environments. 
 You can enter and change the following parameters:
 	○ Username
