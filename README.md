@@ -19,3 +19,7 @@ Allows you to substitute the sending address, to do this, specify the desired ad
 	
 * The application is implemented using the MVVM design pattern.
 * The application uses .NET Framework 4.7.2.
+
+# Download binary.
+
+Download compiled utility: [https://disk.yandex.ru/d/cYfBo2guFT-i-Q](https://disk.yandex.ru/d/cYfBo2guFT-i-Q).
