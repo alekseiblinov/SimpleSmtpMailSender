@@ -9,10 +9,10 @@
       <Value Profile="(Default)">test_to@mail.ru</Value>
     </Setting>
     <Setting Name="Subject" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Проверка связи</Value>
+      <Value Profile="(Default)">Checking the connection</Value>
     </Setting>
     <Setting Name="Body" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Это письмо отправлено из утилиты "Send simple e-mail message with SMTP".</Value>
+      <Value Profile="(Default)">This email was sent from the utility SimpleSmtpMailSender.</Value>
     </Setting>
     <Setting Name="Host" Type="System.String" Scope="User">
       <Value Profile="(Default)">smtp.mail.ru</Value>

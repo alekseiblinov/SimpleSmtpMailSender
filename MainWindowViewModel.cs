@@ -200,7 +200,7 @@ namespace SimpleSmtpMailSender
             // Вызов функции заполнения полей ввода на форме данными из настроек.
             FillWindowFields();
             // Уведомление пользователя о готовности к работе, чтобы область вывода сообщений не выглядела пустой.
-            WriteLogLine("Готов");
+            WriteLogLine("Ready.");
             ErrorsChanged += OnErrorsChanged;
         }
 
@@ -246,7 +246,7 @@ namespace SimpleSmtpMailSender
         /// </summary>
         private void SendMail()
         {
-            WriteLogLine("Отправка уведомления по e-mail");
+            WriteLogLine("Sending a notification by e-mail.");
 
             using (SmtpClient smtpClient = new SmtpClient())
             {
@@ -266,15 +266,15 @@ namespace SimpleSmtpMailSender
                     mail.Subject = Subject;
                     mail.Body = Body;
                     smtpClient.Send(mail);
-                    WriteLogLine($"Отправлено письмо с темой '{Subject}' с почтового ящика '{From}' на '{To}'.");
+                    WriteLogLine($"An email with the subject '{Subject}' was sent from the mailbox '{From}' to '{To}'.");
                 }
                 catch (Exception e)
                 {
-                    WriteLogLine($"Ошибка: {e}");
+                    WriteLogLine($"Error: {e}");
                 }
             }
 
-            WriteLogLine("Отправка уведомления по e-mail завершена");
+            WriteLogLine("Sending the notification by e-mail is completed.");
             WriteLogLine("---------");
         }
 

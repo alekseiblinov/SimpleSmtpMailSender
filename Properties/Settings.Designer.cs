@@ -12,7 +12,7 @@ namespace SimpleSmtpMailSender.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.10.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -49,7 +49,7 @@ namespace SimpleSmtpMailSender.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Проверка связи")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Checking the connection")]
         public string Subject {
             get {
                 return ((string)(this["Subject"]));
@@ -61,7 +61,7 @@ namespace SimpleSmtpMailSender.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Это письмо отправлено из утилиты \"Send simple e-mail message with SMTP\".")]
+        [global::System.Configuration.DefaultSettingValueAttribute("This email was sent from the utility SimpleSmtpMailSender.")]
         public string Body {
             get {
                 return ((string)(this["Body"]));
