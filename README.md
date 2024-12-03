@@ -22,4 +22,4 @@ Allows you to substitute the sending address, to do this, specify the desired ad
 
 # Download binary.
 
-Download compiled utility: [https://disk.yandex.ru/d/cYfBo2guFT-i-Q](https://disk.yandex.ru/d/cYfBo2guFT-i-Q).
+Download compiled utility: [https://disk.yandex.ru/d/ra6fAwH78oVVAg](https://disk.yandex.ru/d/ra6fAwH78oVVAg).
