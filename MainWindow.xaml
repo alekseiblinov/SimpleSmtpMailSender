@@ -8,6 +8,7 @@
         Height="550" Width="800"
         MinHeight="430" MinWidth="780" ResizeMode="CanResizeWithGrip"
         Icon="Images/mail.png"
+        IsEnabled="{Binding Path=MainWindowIsEnabled, Mode=OneWay}"
         >
     <Window.Resources>
         <Style TargetType="TextBox">

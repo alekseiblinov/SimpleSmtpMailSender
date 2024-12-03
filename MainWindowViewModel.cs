@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using SimpleSmtpMailSender.Annotations;
 using SimpleSmtpMailSender.Properties;
 
@@ -19,7 +20,21 @@ namespace SimpleSmtpMailSender
         // Команда "Очистить лог".
         public RelayCommand CleanLogCommand { get; }
 
-        #region Поля переменные для хранения данных, отображаемых во вью.
+        /// <summary>
+        /// Доступность UI главного окна программы для взаимодействия с пользователем.
+        /// </summary>
+        public bool MainWindowIsEnabled
+        {
+            get => _mainWindowIsEnabled;
+            set
+            {
+                if (value == _mainWindowIsEnabled) return;
+                _mainWindowIsEnabled = value;
+                OnPropertyChanged(nameof(MainWindowIsEnabled));
+            }
+        }
+
+        #region Поля для хранения данных, отображаемых во вью.
         [Required]
         [EmailAddress]
         public string From
@@ -179,7 +194,8 @@ namespace SimpleSmtpMailSender
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        #region Переменные для хранения данных полей,, отображаемых во вью.
+        private bool _mainWindowIsEnabled;
+
         #region Переменные для хранения данных полей, отображаемых во вью.
         private string _from;
         private string _to;
@@ -203,6 +219,8 @@ namespace SimpleSmtpMailSender
             // Уведомление пользователя о готовности к работе, чтобы область вывода сообщений не выглядела пустой.
             WriteLogLine("Ready.");
             ErrorsChanged += OnErrorsChanged;
+            // Главное окно программы становится доступным для пользователя.
+            MainWindowIsEnabled = true;
         }
 
         /// <summary>
@@ -245,10 +263,21 @@ namespace SimpleSmtpMailSender
         /// <summary>
         /// Отправка почтового сообщения.
         /// </summary>
-        private void SendMail()
+        private async void SendMail()
         {
             WriteLogLine("Sending a notification by e-mail.");
 
+            // Главное окно программы становится недоступным для пользователя.
+            MainWindowIsEnabled = false;
+            // Вызов функции отправки письма по электронной почте в асинхронном режиме.
+            await Task.Run(SendMailAsync);
+        }
+
+        /// <summary>
+        /// Отправка письма по электронной почте.
+        /// </summary>
+        private void SendMailAsync()
+        {
             using (SmtpClient smtpClient = new SmtpClient())
             {
                 smtpClient.UseDefaultCredentials = UseDefaultCredentials;
@@ -260,9 +289,9 @@ namespace SimpleSmtpMailSender
                 try
                 {
                     MailMessage mail = new MailMessage
-                    {
-                        From = new MailAddress(From)
-                    };
+                                       {
+                                           From = new MailAddress(From)
+                                       };
                     mail.To.Add(To);
                     mail.Subject = Subject;
                     mail.Body = Body;
@@ -277,6 +306,8 @@ namespace SimpleSmtpMailSender
 
             WriteLogLine("Sending the notification by e-mail is completed.");
             WriteLogLine("---------");
+            // Главное окно программы становится доступным для пользователя.
+            MainWindowIsEnabled = true;
         }
 
         /// <summary>
