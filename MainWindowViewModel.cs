@@ -175,11 +175,12 @@ namespace SimpleSmtpMailSender
                 OnPropertyChanged(nameof(OutputText));
             }
         }
-        #endregion Поля переменные для хранения данных, отображаемых во вью.
+        #endregion Поля для хранения данных, отображаемых во вью.
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         #region Переменные для хранения данных полей,, отображаемых во вью.
+        #region Переменные для хранения данных полей, отображаемых во вью.
         private string _from;
         private string _to;
         private string _subject;
@@ -191,7 +192,7 @@ namespace SimpleSmtpMailSender
         private bool _enableSsl;
         private bool _useDefaultCredentials;
         private string _outputText;
-        #endregion Переменные для хранения данных полей,, отображаемых во вью.
+        #endregion Переменные для хранения данных полей, отображаемых во вью.
 
         public MainWindowViewModel()
         {

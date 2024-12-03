@@ -13,7 +13,7 @@
         <Style TargetType="TextBox">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True">
-                    <Setter Property="ToolTip" Value ="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"></Setter>
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"></Setter>
                 </Trigger>
             </Style.Triggers>
         </Style>
