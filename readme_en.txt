@@ -26,4 +26,4 @@ Allows you to substitute the sending address, to do this, specify the desired ad
 	Publication.
 	
 This project is published on GitHub: https://github.com/alekseiblinov/SimpleSmtpMailSender/.
-Download compiled utility: https://disk.yandex.ru/d/cYfBo2guFT-i-Q.
+Download compiled utility: https://disk.yandex.ru/d/ra6fAwH78oVVAg.

@@ -26,4 +26,4 @@
 	Публикация.
 	
 Этот проект опубликован на GitHub: https://github.com/alekseiblinov/SimpleSmtpMailSender/.
-Скачать скомпилированную утилиту: https://disk.yandex.ru/d/cYfBo2guFT-i-Q.
+Скачать скомпилированную утилиту: https://disk.yandex.ru/d/ra6fAwH78oVVAg.
