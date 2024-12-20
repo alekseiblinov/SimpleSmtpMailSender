@@ -52,7 +52,7 @@ namespace SimpleSmtpMailSender
                 if (FillBodyTextAutomatically)
                 {
                     // Генерация текста письма.
-                    Body = GenerateMailBodyText();
+                    Body = CommonLogic.GenerateMailBodyText(this);
                 }
             }
         }
@@ -74,7 +74,7 @@ namespace SimpleSmtpMailSender
                 if (FillBodyTextAutomatically)
                 {
                     // Генерация текста письма.
-                    Body = GenerateMailBodyText();
+                    Body = CommonLogic.GenerateMailBodyText(this);
                 }
             }
         }
@@ -96,7 +96,7 @@ namespace SimpleSmtpMailSender
                 if (FillBodyTextAutomatically)
                 {
                     // Генерация текста письма.
-                    Body = GenerateMailBodyText();
+                    Body = CommonLogic.GenerateMailBodyText(this);
                 }
             }
         }
@@ -138,7 +138,7 @@ namespace SimpleSmtpMailSender
                 if (FillBodyTextAutomatically)
                 {
                     // Генерация текста письма.
-                    Body = GenerateMailBodyText();
+                    Body = CommonLogic.GenerateMailBodyText(this);
                 }
             }
         }
@@ -160,7 +160,7 @@ namespace SimpleSmtpMailSender
                 if (FillBodyTextAutomatically)
                 {
                     // Генерация текста письма.
-                    Body = GenerateMailBodyText();
+                    Body = CommonLogic.GenerateMailBodyText(this);
                 }
             }
         }
@@ -184,7 +184,7 @@ namespace SimpleSmtpMailSender
                 if (FillBodyTextAutomatically)
                 {
                     // Генерация текста письма.
-                    Body = GenerateMailBodyText();
+                    Body = CommonLogic.GenerateMailBodyText(this);
                 }
             }
         }
@@ -205,7 +205,7 @@ namespace SimpleSmtpMailSender
                 if (FillBodyTextAutomatically)
                 {
                     // Генерация текста письма.
-                    Body = GenerateMailBodyText();
+                    Body = CommonLogic.GenerateMailBodyText(this);
                 }
             }
         }
@@ -226,7 +226,7 @@ namespace SimpleSmtpMailSender
                 if (value)
                 {
                     // Вызов функции генерации текста письма.
-                    Body = GenerateMailBodyText();
+                    Body = CommonLogic.GenerateMailBodyText(this);
                 }
                 else
                 {
@@ -253,7 +253,7 @@ namespace SimpleSmtpMailSender
                 if (FillBodyTextAutomatically)
                 {
                     // Генерация текста письма.
-                    Body = GenerateMailBodyText();
+                    Body = CommonLogic.GenerateMailBodyText(this);
                 }
             }
         }
@@ -355,7 +355,7 @@ namespace SimpleSmtpMailSender
             if (FillBodyTextAutomatically)
             {
                 // Вызов функции генерации текста письма.
-                Body = GenerateMailBodyText();
+                Body = CommonLogic.GenerateMailBodyText(this);
             }
             else
             {
@@ -367,7 +367,6 @@ namespace SimpleSmtpMailSender
 
         /// <summary>
         /// Отправка почтового сообщения.
-        /// !!! Вынести в отдельный класс Mailing.
         /// </summary>
         private async void SendMail()
         {
@@ -381,7 +380,6 @@ namespace SimpleSmtpMailSender
 
         /// <summary>
         /// Отправка письма по электронной почте.
-        /// !!! Вынести в отдельный класс Mailing.
         /// </summary>
         private void SendMailAsync()
         {
@@ -415,60 +413,6 @@ namespace SimpleSmtpMailSender
             WriteLogLine("---------");
             // Главное окно программы становится доступным для пользователя.
             MainWindowIsEnabled = true;
-        }
-
-        /// <summary>
-        /// Формирование полезного для DevOps текста письма.
-        /// !!! Вынести в отдельный класс CommonLogic.
-        /// </summary>
-        private string GenerateMailBodyText()
-        {
-            string result =
-$@"This email was sent from the utility SimpleSmtpMailSender.
-
-UserName: {UserName}
-Host: {Host}
-Port: {Port}
-Use SSL: {EnableSsl}
-Use default credentials: {UseDefaultCredentials}
-From: {From}
-To: {To}
-
-Sender device hostname: {GenerateCurrentDeviceHostname()}
-Sender device IPs: {GenerateCurrentDeviceIpAddress()}
-
-Send date and time (UTC): {DateTime.UtcNow}";
-
-            return result;
-        }
-
-        /// <summary>
-        /// Получение сетевого имени текущего устройства.
-        /// !!! Вынести в отдельный класс CommonLogic.
-        /// </summary>
-        private string GenerateCurrentDeviceHostname()
-        {
-            string result = Dns.GetHostName();
-
-            return result;
-        }
-
-        /// <summary>
-        /// Получение перечня IP-адресов текущего устройства.
-        /// !!! Вынести в отдельный класс CommonLogic.
-        /// </summary>
-        private string GenerateCurrentDeviceIpAddress()
-        {
-            string result = string.Empty;
-            
-            IPAddress[] hostAddresses = Dns.GetHostAddresses(GenerateCurrentDeviceHostname());
-
-            foreach (IPAddress hostAddress in hostAddresses)
-            {
-                result += $"\r\n\t{hostAddress}";
-            }
-
-            return result;
         }
 
         /// <summary>
