@@ -47,6 +47,13 @@ namespace SimpleSmtpMailSender
                 ValidateProperty(nameof(From), value);
                 Settings.Default.From = value;
                 Settings.Default.Save();
+
+                // Если пользователь выбрал автоматически генерировать текст письма, то
+                if (FillBodyTextAutomatically)
+                {
+                    // Генерация текста письма.
+                    Body = GenerateMailBodyText();
+                }
             }
         }
 
@@ -62,6 +69,13 @@ namespace SimpleSmtpMailSender
                 ValidateProperty(nameof(To), value);
                 Settings.Default.To = value;
                 Settings.Default.Save();
+
+                // Если пользователь выбрал автоматически генерировать текст письма, то
+                if (FillBodyTextAutomatically)
+                {
+                    // Генерация текста письма.
+                    Body = GenerateMailBodyText();
+                }
             }
         }
 
@@ -77,6 +91,13 @@ namespace SimpleSmtpMailSender
                 ValidateProperty(nameof(Subject), value);
                 Settings.Default.Subject = value;
                 Settings.Default.Save();
+
+                // Если пользователь выбрал автоматически генерировать текст письма, то
+                if (FillBodyTextAutomatically)
+                {
+                    // Генерация текста письма.
+                    Body = GenerateMailBodyText();
+                }
             }
         }
 
@@ -90,8 +111,14 @@ namespace SimpleSmtpMailSender
                 _body = value;
                 OnPropertyChanged(nameof(Body));
                 ValidateProperty(nameof(Body), value);
-                Settings.Default.Body = value;
-                Settings.Default.Save();
+             
+                // Если пользователь выбрал не генерировать автоматически текст письма, то
+                if (!FillBodyTextAutomatically)
+                {
+                    // Сохранение в настройках введённого пользователем текста письма.
+                    Settings.Default.Body = value;
+                    Settings.Default.Save();
+                }
             }
         }
 
@@ -106,6 +133,13 @@ namespace SimpleSmtpMailSender
                 ValidateProperty(nameof(Host), value);
                 Settings.Default.Host = value;
                 Settings.Default.Save();
+
+                // Если пользователь выбрал автоматически генерировать текст письма, то
+                if (FillBodyTextAutomatically)
+                {
+                    // Генерация текста письма.
+                    Body = GenerateMailBodyText();
+                }
             }
         }
 
@@ -121,9 +155,19 @@ namespace SimpleSmtpMailSender
                 ValidateProperty(nameof(Port), value);
                 Settings.Default.Port = value;
                 Settings.Default.Save();
+
+                // Если пользователь выбрал автоматически генерировать текст письма, то
+                if (FillBodyTextAutomatically)
+                {
+                    // Генерация текста письма.
+                    Body = GenerateMailBodyText();
+                }
             }
         }
 
+        /// <summary>
+        /// Требуется ли заполнять текст письма автоматически, или пользователь может ввести текст самостоятельно.
+        /// </summary>
         [Required]
         public bool EnableSsl
         {
@@ -135,6 +179,13 @@ namespace SimpleSmtpMailSender
                 ValidateProperty(nameof(EnableSsl), value);
                 Settings.Default.EnableSsl = value;
                 Settings.Default.Save();
+
+                // Если пользователь выбрал автоматически генерировать текст письма, то
+                if (FillBodyTextAutomatically)
+                {
+                    // Генерация текста письма.
+                    Body = GenerateMailBodyText();
+                }
             }
         }
 
@@ -149,6 +200,39 @@ namespace SimpleSmtpMailSender
                 ValidateProperty(nameof(UseDefaultCredentials), value);
                 Settings.Default.UseDefaultCredentials = value;
                 Settings.Default.Save();
+
+                // Если пользователь выбрал автоматически генерировать текст письма, то
+                if (FillBodyTextAutomatically)
+                {
+                    // Генерация текста письма.
+                    Body = GenerateMailBodyText();
+                }
+            }
+        }
+
+        [Required]
+        public bool FillBodyTextAutomatically
+        {
+            get => _fillBodyTextAutomatically;
+            set
+            {
+                _fillBodyTextAutomatically = value;
+                OnPropertyChanged(nameof(FillBodyTextAutomatically));
+                ValidateProperty(nameof(FillBodyTextAutomatically), value);
+                Settings.Default.FillBodyTextAutomatically = value;
+                Settings.Default.Save();
+
+                // Если пользователь выбрал автоматическое заполнение текста письма, то 
+                if (value)
+                {
+                    // Вызов функции генерации текста письма.
+                    Body = GenerateMailBodyText();
+                }
+                else
+                {
+                    // В поле ввода текста письма выводится сохранённый в настройках текст письма.
+                    Body = Settings.Default.Body;
+                }
             }
         }
 
@@ -164,6 +248,13 @@ namespace SimpleSmtpMailSender
                 ValidateProperty(nameof(UserName), value);
                 Settings.Default.UserName = value;
                 Settings.Default.Save();
+
+                // Если пользователь выбрал автоматически генерировать текст письма, то
+                if (FillBodyTextAutomatically)
+                {
+                    // Генерация текста письма.
+                    Body = GenerateMailBodyText();
+                }
             }
         }
 
@@ -207,6 +298,7 @@ namespace SimpleSmtpMailSender
         private int _port;
         private bool _enableSsl;
         private bool _useDefaultCredentials;
+        private bool _fillBodyTextAutomatically;
         private string _outputText;
         #endregion Переменные для хранения данных полей, отображаемых во вью.
 
@@ -237,9 +329,6 @@ namespace SimpleSmtpMailSender
             _subject = Settings.Default.Subject;
             OnPropertyChanged(nameof(Subject));
             ValidateProperty(nameof(Subject), _subject);
-            _body = Settings.Default.Body;
-            OnPropertyChanged(nameof(Body));
-            ValidateProperty(nameof(Body), _body);
             _host = Settings.Default.Host;
             OnPropertyChanged(nameof(Host));
             ValidateProperty(nameof(Host), _host);
@@ -248,7 +337,10 @@ namespace SimpleSmtpMailSender
             ValidateProperty(nameof(Port), _port);
             _enableSsl = Settings.Default.EnableSsl;
             OnPropertyChanged(nameof(EnableSsl));
-            ValidateProperty(nameof(EnableSsl), _enableSsl);            
+            ValidateProperty(nameof(EnableSsl), _enableSsl);      
+            _fillBodyTextAutomatically = Settings.Default.FillBodyTextAutomatically;
+            OnPropertyChanged(nameof(FillBodyTextAutomatically));
+            ValidateProperty(nameof(FillBodyTextAutomatically), _fillBodyTextAutomatically);
             _useDefaultCredentials = Settings.Default.UseDefaultCredentials;
             OnPropertyChanged(nameof(UseDefaultCredentials));
             ValidateProperty(nameof(UseDefaultCredentials), _useDefaultCredentials);
@@ -258,10 +350,24 @@ namespace SimpleSmtpMailSender
             _password = Settings.Default.Password;
             OnPropertyChanged(nameof(Password));
             ValidateProperty(nameof(Password), _password);
+
+            // Если пользователь выбрал автоматически генерировать текст письма, то
+            if (FillBodyTextAutomatically)
+            {
+                // Вызов функции генерации текста письма.
+                GenerateMailBodyText();
+            }
+            else
+            {
+                _body = Settings.Default.Body;
+                OnPropertyChanged(nameof(Body));
+                ValidateProperty(nameof(Body), _body);
+            }
         }
 
         /// <summary>
         /// Отправка почтового сообщения.
+        /// !!! Вынести в отдельный класс Mailing.
         /// </summary>
         private async void SendMail()
         {
@@ -275,6 +381,7 @@ namespace SimpleSmtpMailSender
 
         /// <summary>
         /// Отправка письма по электронной почте.
+        /// !!! Вынести в отдельный класс Mailing.
         /// </summary>
         private void SendMailAsync()
         {
@@ -308,6 +415,60 @@ namespace SimpleSmtpMailSender
             WriteLogLine("---------");
             // Главное окно программы становится доступным для пользователя.
             MainWindowIsEnabled = true;
+        }
+
+        /// <summary>
+        /// Формирование полезного для DevOps текста письма.
+        /// !!! Вынести в отдельный класс CommonLogic.
+        /// </summary>
+        private string GenerateMailBodyText()
+        {
+            string result =
+$@"This email was sent from the utility SimpleSmtpMailSender.
+
+UserName: {UserName}
+Host: {Host}
+Port: {Port}
+Use SSL: {EnableSsl}
+Use default credentials: {UseDefaultCredentials}
+From: {From}
+To: {To}
+
+Sender device hostname: {GenerateCurrentDeviceHostname()}
+Sender device IPs: {GenerateCurrentDeviceIpAddress()}
+
+Send date and time (UTC): {DateTime.UtcNow}";
+
+            return result;
+        }
+
+        /// <summary>
+        /// Получение сетевого имени текущего устройства.
+        /// !!! Вынести в отдельный класс CommonLogic.
+        /// </summary>
+        private string GenerateCurrentDeviceHostname()
+        {
+            string result = Dns.GetHostName();
+
+            return result;
+        }
+
+        /// <summary>
+        /// Получение перечня IP-адресов текущего устройства.
+        /// !!! Вынести в отдельный класс CommonLogic.
+        /// </summary>
+        private string GenerateCurrentDeviceIpAddress()
+        {
+            string result = string.Empty;
+            
+            IPAddress[] hostAddresses = Dns.GetHostAddresses(GenerateCurrentDeviceHostname());
+
+            foreach (IPAddress hostAddress in hostAddresses)
+            {
+                result += $"\r\n\t{hostAddress}";
+            }
+
+            return result;
         }
 
         /// <summary>

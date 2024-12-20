@@ -142,5 +142,17 @@ namespace SimpleSmtpMailSender.Properties {
                 this["UseDefaultCredentials"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FillBodyTextAutomatically {
+            get {
+                return ((bool)(this["FillBodyTextAutomatically"]));
+            }
+            set {
+                this["FillBodyTextAutomatically"] = value;
+            }
+        }
     }
 }

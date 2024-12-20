@@ -78,15 +78,24 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Row="0" Grid.Column="0">From:</Label>
-                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=From, Mode=TwoWay, NotifyOnValidationError=True}" HorizontalAlignment="Stretch" Margin="3"></TextBox>
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=From, Mode=TwoWay, NotifyOnValidationError=True}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="3"></TextBox>
                     <Label Grid.Row="1" Grid.Column="0">To:</Label>
-                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=To, Mode=TwoWay, NotifyOnValidationError=True}" HorizontalAlignment="Stretch" Margin="3"></TextBox>
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=To, Mode=TwoWay, NotifyOnValidationError=True}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="3"></TextBox>
                     <Label Grid.Row="2" Grid.Column="0">Subject:</Label>
                     <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"  Text="{Binding Path=Subject, Mode=TwoWay, NotifyOnValidationError=True}" Margin="3"></TextBox>
                 </Grid>
 
-                <Label Grid.Row="3">Body:</Label>
-                <TextBox Grid.Row="4" Text="{Binding Path=Body, Mode=TwoWay, NotifyOnValidationError=True}" Height="100px" Margin="3"></TextBox>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0">Body:</Label>
+                    <CheckBox Grid.Column="2" IsChecked="{Binding Path=FillBodyTextAutomatically, Mode=TwoWay, NotifyOnValidationError=True}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="3">Fill text automatically</CheckBox>
+                </Grid>
+
+                <TextBox Grid.Row="4" Text="{Binding Path=Body, Mode=TwoWay, NotifyOnValidationError=True}" IsReadOnly="{Binding Path=FillBodyTextAutomatically, Mode=TwoWay, NotifyOnValidationError=True}" Height="100px" Margin="3"></TextBox>
                 <Button Grid.Row="5" Command="{Binding SendCommand}" Width="100" HorizontalAlignment="Center">Send</Button>
             </Grid>
         </GroupBox>
