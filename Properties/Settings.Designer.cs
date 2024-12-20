@@ -109,7 +109,7 @@ namespace SimpleSmtpMailSender.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("xxx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("xxxxxxxx")]
         public string Password {
             get {
                 return ((string)(this["Password"]));
