@@ -355,7 +355,7 @@ namespace SimpleSmtpMailSender
             if (FillBodyTextAutomatically)
             {
                 // Вызов функции генерации текста письма.
-                GenerateMailBodyText();
+                Body = GenerateMailBodyText();
             }
             else
             {
