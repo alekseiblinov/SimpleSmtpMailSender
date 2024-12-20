@@ -95,7 +95,7 @@
                     <CheckBox Grid.Column="2" IsChecked="{Binding Path=FillBodyTextAutomatically, Mode=TwoWay, NotifyOnValidationError=True}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="3">Fill text automatically</CheckBox>
                 </Grid>
 
-                <TextBox Grid.Row="4" Text="{Binding Path=Body, Mode=TwoWay, NotifyOnValidationError=True}" IsReadOnly="{Binding Path=FillBodyTextAutomatically, Mode=TwoWay, NotifyOnValidationError=True}" Height="100px" Margin="3"></TextBox>
+                <TextBox Grid.Row="4" Text="{Binding Path=Body, Mode=TwoWay, NotifyOnValidationError=True}" IsReadOnly="{Binding Path=FillBodyTextAutomatically, Mode=TwoWay, NotifyOnValidationError=True}" TextWrapping="Wrap" AcceptsReturn="True" Height="100px" Margin="3"></TextBox>
                 <Button Grid.Row="5" Command="{Binding SendCommand}" Width="100" HorizontalAlignment="Center">Send</Button>
             </Grid>
         </GroupBox>
